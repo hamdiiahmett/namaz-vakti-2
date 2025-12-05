@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <base href="./"> 
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Namaz Vakti Pro</title>
     
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
     
-    <meta name="theme-color" content="#5e2129">
+    <meta name="theme-color" content="#fdfbf7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="icon" type="image/jpeg" href="icon-192.jpeg">
     
@@ -23,14 +22,13 @@
 <body>
 
     <div class="tema-secici">
-        <div class="tema-btn lal" onclick="temaDegistir('default')" title="Gül Kurusu Teması"></div>
-        <div class="tema-btn light" onclick="temaDegistir('light')" title="Aydınlık Tema"></div>
+        <div class="tema-btn light" onclick="temaDegistir('default')" title="Pastel Tema (Varsayılan)"></div>
+        <div class="tema-btn lal" onclick="temaDegistir('lal')" title="Gül Kurusu Teması"></div>
         <div class="tema-btn dark" onclick="temaDegistir('dark')" title="Karanlık Tema"></div>
     </div>
 
     <header>
         <p class="selamlama" id="selamlama-mesaji">Hoş Geldiniz</p>
-        
         <div class="custom-dropdown">
             <h1 id="sehir-baslik" onclick="dropdownToggle()">YÜKLENİYOR... <span class="arrow">▼</span></h1>
             <ul id="sehir-listesi" class="dropdown-content">
@@ -51,7 +49,6 @@
         </div>
 
         <section class="vakit-kartlari">
-            
             <div class="kart" id="kutu-imsak">
                 <div class="vakit-isim-wrapper">
                     <svg class="vakit-ikon" viewBox="0 0 24 24">
