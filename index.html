@@ -2,17 +2,21 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <base href="/namaz-vakti-2/"> <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <base href="./"> 
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Namaz Vakti Pro</title>
+    
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
+    
     <meta name="theme-color" content="#5e2129">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="icon" type="image/jpeg" href="icon-192.jpeg">
     
     <script>
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js'));
+            window.addEventListener('load', () => navigator.serviceWorker.register('sw.js'));
         }
     </script>
 </head>
@@ -26,6 +30,7 @@
 
     <header>
         <p class="selamlama" id="selamlama-mesaji">Hoş Geldiniz</p>
+        
         <div class="custom-dropdown">
             <h1 id="sehir-baslik" onclick="dropdownToggle()">YÜKLENİYOR... <span class="arrow">▼</span></h1>
             <ul id="sehir-listesi" class="dropdown-content">
@@ -50,12 +55,18 @@
             <div class="kart" id="kutu-imsak">
                 <div class="vakit-isim-wrapper">
                     <svg class="vakit-ikon" viewBox="0 0 24 24">
-                        <path d="M12 2L12 6"/>
-                        <path d="M12 6C15 6 17 8 17 11V18H7V11C7 8 9 6 12 6Z"/>
-                        <path d="M3 18H21V22H3V18Z"/>
-                        <path d="M10 22V18"/>
-                        <path d="M14 22V18"/>
-                        <circle cx="12" cy="9" r="1.5" />
+                        <path d="M2 20H22" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M4 20V22H20V20" stroke-width="1"/>
+                        <path d="M5 20V12H19V20" stroke-width="2"/>
+                        <path d="M9 20V16C9 14.8954 9.89543 14 11 14H13C14.1046 14 15 14.8954 15 16V20" stroke-width="2" stroke-linecap="round"/> 
+                        <path d="M6 16V14C6 13.4477 6.44772 13 7 13H8C8.55228 13 9 13.4477 9 14V16" stroke-width="1.5"/> 
+                        <path d="M15 16V14C15 13.4477 15.4477 13 16 13H17C17.5523 13 18 13.4477 18 14V16" stroke-width="1.5"/> 
+                        <path d="M5 12H19" stroke-width="2"/> 
+                        <path d="M5 12V8" stroke-width="2"/> <path d="M5 8L4 6H6L5 8Z" stroke-width="2"/> 
+                        <path d="M19 12V8" stroke-width="2"/> <path d="M19 8L18 6H20L19 8Z" stroke-width="2"/> 
+                        <path d="M7 12C7 8 9 5 12 5C15 5 17 8 17 12" stroke-width="2"/>
+                        <path d="M11 4C11 3 11.5 2 12 2C12.5 2 13 3 13 4" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M11.5 3C11 3 10.5 3.5 10.5 4C10.5 4.5 11 5 11.5 5C12 5 12.5 4.5 12.5 4C12.5 3.5 12 3 11.5 3Z" fill="none" stroke-width="1"/>
                     </svg>
                     <h2>İmsak</h2>
                 </div>
