@@ -2,7 +2,7 @@
 
 :root {
     /* Varsayılan Tema (Lal - Soft Gül Kurusu) */
-    --bg-gradient: linear-gradient(135deg, #5e2129, #7a3e4b, #4a2c3a);
+    --bg-gradient: linear-gradient(135deg, #783841, #49101c, #600d34);
     --glass-container: rgba(94, 33, 41, 0.25); 
     --glass-bg: rgba(74, 44, 58, 0.85); 
     --glass-border: rgba(235, 211, 165, 0.2);
