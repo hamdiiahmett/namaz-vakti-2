@@ -1,7 +1,7 @@
 {
     "name": "Namaz Vakti",
     "short_name": "Namaz Vakti",
-    "id": "/",
+    "id": "/namaz-vakti-2/",
     "start_url": "/namaz-vakti-2/index.html",
     "scope": "/namaz-vakti-2/",
     "display": "standalone",
