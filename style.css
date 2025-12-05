@@ -1,12 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 :root {
-    /* Varsayılan Tema (Lal - Soft Gül Kurusu) */
-    --bg-gradient: linear-gradient(135deg, #783841, #49101c, #600d34);
+    /* ARTIK VARSAYILAN TEMA: AYDINLIK (Pastel Sahra - İstediğin Krem Rengi) */
+    /* İlk açılışta herkes bunu görecek */
+    --bg-gradient: linear-gradient(135deg, #fdfbf7, #e2d1c3, #dccec5);
+    --glass-container: rgba(255, 255, 255, 0.25);
+    --glass-bg: rgba(253, 251, 247, 0.9);
+    --glass-border: rgba(166, 124, 82, 0.15);
+    --text-primary: #5a4a42; /* Kahve Tonları */
+    --text-secondary: #8c7b75;
+    --card-hover: rgba(166, 124, 82, 0.1);
+    --accent-color: #a67c52; /* Bronz */
+    --ring-color: #a67c52;
+    --dropdown-hover: rgba(166, 124, 82, 0.15);
+}
+
+[data-theme="lal"] {
+    /* Eski Gül Kurusu Teması (Artık bir seçenek) */
+    --bg-gradient: linear-gradient(135deg, #5e2129, #7a3e4b, #4a2c3a);
     --glass-container: rgba(94, 33, 41, 0.25); 
     --glass-bg: rgba(74, 44, 58, 0.85); 
     --glass-border: rgba(235, 211, 165, 0.2);
-    --text-primary: #ebd3a5; /* Şampanya Sarısı */
+    --text-primary: #ebd3a5;
     --text-secondary: #d1c4d9;
     --card-hover: rgba(235, 211, 165, 0.15);
     --accent-color: #ebd3a5;
@@ -14,22 +29,8 @@
     --dropdown-hover: rgba(235, 211, 165, 0.2);
 }
 
-[data-theme="light"] {
-    /* Aydınlık Tema (Pastel Sahra) */
-    --bg-gradient: linear-gradient(135deg, #fdfbf7, #e2d1c3, #dccec5);
-    --glass-container: rgba(255, 255, 255, 0.25);
-    --glass-bg: rgba(253, 251, 247, 0.9);
-    --glass-border: rgba(166, 124, 82, 0.15);
-    --text-primary: #5a4a42;
-    --text-secondary: #8c7b75;
-    --card-hover: rgba(166, 124, 82, 0.1);
-    --accent-color: #a67c52;
-    --ring-color: #a67c52;
-    --dropdown-hover: rgba(166, 124, 82, 0.15);
-}
-
 [data-theme="dark"] {
-    /* Koyu Tema (Derin Okyanus) */
+    /* Koyu Tema (Derin Okyanus) - Aynı kaldı */
     --bg-gradient: linear-gradient(135deg, #0f172a, #1e293b, #000000);
     --glass-container: rgba(15, 23, 42, 0.6);
     --glass-bg: rgba(15, 23, 42, 0.9);
@@ -69,7 +70,7 @@ body {
     display: flex;
     gap: 15px;
     margin-bottom: 15px;
-    background: rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.1); /* Hafif şeffaflaştırdım */
     padding: 8px 15px;
     border-radius: 30px;
     backdrop-filter: blur(10px);
@@ -80,13 +81,15 @@ body {
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.3);
+    border: 2px solid rgba(255,255,255,0.5);
     cursor: pointer;
     transition: transform 0.2s, border-color 0.2s;
 }
 .tema-btn:hover { transform: scale(1.15); border-color: var(--accent-color); }
+
+/* Buton Renkleri */
+.tema-btn.light { background: linear-gradient(135deg, #fdfbf7, #e2d1c3); } /* Artık Default */
 .tema-btn.lal { background: linear-gradient(135deg, #5e2129, #7a3e4b); }
-.tema-btn.light { background: linear-gradient(135deg, #fdfbf7, #e2d1c3); }
 .tema-btn.dark { background: linear-gradient(135deg, #0f172a, #000000); }
 
 header {
@@ -192,7 +195,7 @@ main {
     border: 1px solid var(--glass-border);
     border-radius: 30px;
     padding: 30px 20px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15); /* Gölgeyi hafiflettim */
     margin-bottom: 20px;
     transition: all 0.5s ease;
 }
@@ -207,9 +210,9 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.1); 
+    background: rgba(0, 0, 0, 0.05); /* Daha hafif zemin */
     border-radius: 50%;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
 }
 
 .progress-ring {
@@ -217,7 +220,7 @@ main {
     top: 0; left: 0;
     transform: rotate(-90deg);
 }
-.bg-ring { stroke: var(--glass-border); opacity: 0.3; }
+.bg-ring { stroke: var(--glass-border); opacity: 0.5; }
 
 .progress-ring__circle {
     transition: stroke-dashoffset 0.5s ease-in-out;
@@ -252,7 +255,7 @@ main {
     color: var(--text-primary);
     line-height: 1;
     font-variant-numeric: tabular-nums;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 /* Vakit Kartları */
@@ -267,7 +270,7 @@ main {
     justify-content: space-between;
     align-items: center;
     padding: 16px 20px;
-    background: rgba(255, 255, 255, 0.03); 
+    background: rgba(255, 255, 255, 0.3); /* Kartlar daha aydınlık */
     border-radius: 18px;
     border: 1px solid transparent; 
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -279,13 +282,13 @@ main {
     gap: 15px;
 }
 
-/* İKON AYARLARI (GÜNCELLENDİ: LINE ART İÇİN) */
+/* İKON AYARLARI */
 .vakit-ikon {
     width: 28px;
     height: 28px;
-    fill: none; /* İçi boş, çünkü çizgi ikon kullanıyoruz */
-    stroke: var(--text-secondary); /* Çizgi rengi */
-    stroke-width: 2; /* Çizgi kalınlığı */
+    fill: none; 
+    stroke: var(--text-secondary); 
+    stroke-width: 2; 
     stroke-linecap: round;
     stroke-linejoin: round;
     transition: stroke 0.3s ease;
