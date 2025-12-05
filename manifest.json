@@ -1,0 +1,26 @@
+{
+    "name": "Namaz Vakti",
+    "short_name": "Namaz Vakti",
+    "id": "/",
+    "start_url": "/index.html",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#000000",
+    "theme_color": "#430000",
+    "description": "Namaz vakitleri takibi.",
+    "icons": [
+        {
+            "src": "icon-192.jpeg",
+            "sizes": "192x192",
+            "type": "image/jpeg",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "icon-512.jpeg",
+            "sizes": "512x512",
+            "type": "image/jpeg",
+            "purpose": "any maskable"
+        }
+    ]
+}

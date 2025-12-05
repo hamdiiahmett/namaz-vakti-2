@@ -1,0 +1,318 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+    /* Varsayılan Tema (Lal - Senin Kırmızın) */
+    --bg-gradient: linear-gradient(135deg, #5e2129, #7a3e4b, #4a2c3a);
+    --glass-container: rgba(80, 22, 22, 0.4); /* Ana Kutu Rengi */
+    --glass-bg: rgba(54, 4, 22, 0.95); /* Dropdown ve Kartlar */
+    --glass-border: rgba(235, 211, 165, 0.15);
+    --text-primary: #ebd3a5; /* Şampanya Sarısı */
+    --text-secondary: #d1c4d9;
+    --card-hover: rgba(235, 211, 165, 0.15);
+    --accent-color: #ebd3a5;
+    --ring-color: #ebd3a5;
+    --dropdown-hover: rgba(235, 211, 165, 0.2);
+}
+
+[data-theme="light"] {
+    /* Aydınlık Tema (Pastel Sahra) */
+    --bg-gradient: linear-gradient(135deg, #fdfbf7, #e2d1c3, #dccec5);
+    --glass-container: rgba(255, 255, 255, 0.25);
+    --glass-bg: rgba(253, 251, 247, 0.9);
+    --glass-border: rgba(166, 124, 82, 0.15);
+    --text-primary: #5a4a42;
+    --text-secondary: #8c7b75;
+    --card-hover: rgba(166, 124, 82, 0.1);
+    --accent-color: #a67c52;
+    --ring-color: #a67c52;
+    --dropdown-hover: rgba(166, 124, 82, 0.15);
+}
+
+[data-theme="dark"] {
+    /* Koyu Tema (Derin Okyanus) */
+    --bg-gradient: linear-gradient(135deg, #0f172a, #1e293b, #000000);
+    --glass-container: rgba(15, 23, 42, 0.6);
+    --glass-bg: rgba(15, 23, 42, 0.9);
+    --glass-border: rgba(56, 189, 248, 0.15);
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --card-hover: rgba(56, 189, 248, 0.15);
+    --accent-color: #38bdf8;
+    --ring-color: #38bdf8;
+    --dropdown-hover: rgba(56, 189, 248, 0.2);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-gradient);
+    background-size: 400% 400%;
+    animation: calmFlow 25s ease infinite;
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    transition: background 0.5s ease, color 0.5s ease;
+}
+
+@keyframes calmFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Tema Değiştirici Butonları */
+.tema-secici {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    background: rgba(0,0,0,0.2);
+    padding: 8px 15px;
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.tema-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+}
+.tema-btn:hover { transform: scale(1.15); border-color: var(--accent-color); }
+.tema-btn.lal { background: linear-gradient(135deg, #360416, #2a0249); }
+.tema-btn.light { background: linear-gradient(135deg, #fdfbf7, #e2d1c3); }
+.tema-btn.dark { background: linear-gradient(135deg, #0f172a, #000000); }
+
+header {
+    text-align: center;
+    width: 100%;
+    max-width: 480px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+header .selamlama {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-bottom: 5px;
+    opacity: 0.9;
+}
+
+/* --- DROPDOWN TASARIMI --- */
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+header h1#sehir-baslik {
+    color: var(--accent-color);
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 5px 15px;
+    border-radius: 12px;
+    transition: background 0.3s ease;
+}
+
+header h1#sehir-baslik:hover {
+    background: var(--dropdown-hover);
+}
+
+.arrow { font-size: 0.8rem; transition: transform 0.3s ease; }
+.custom-dropdown.show .arrow { transform: rotate(180deg); }
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 220px;
+    max-height: 350px;
+    overflow-y: auto;
+    background: var(--glass-bg); /* Daha opak arka plan */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    z-index: 100;
+    margin-top: 10px;
+    padding: 10px 0;
+    list-style: none;
+}
+
+.custom-dropdown.show .dropdown-content {
+    display: block;
+    animation: fadeInDropdown 0.3s ease;
+}
+
+@keyframes fadeInDropdown {
+    from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.dropdown-content li {
+    padding: 12px 20px;
+    text-align: left;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid var(--glass-border);
+}
+.dropdown-content li:last-child { border-bottom: none; }
+.dropdown-content li:hover { background: var(--dropdown-hover); color: var(--accent-color); padding-left: 25px; }
+
+/* Scrollbar */
+.dropdown-content::-webkit-scrollbar { width: 6px; }
+.dropdown-content::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
+.dropdown-content::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 10px; }
+
+
+main {
+    width: 100%;
+    max-width: 480px;
+    /* O sevdiğin kutu efekti: */
+    background: var(--glass-container); 
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 30px;
+    padding: 30px 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    transition: all 0.5s ease;
+}
+
+/* DAİRESEL SAYAÇ ALANI */
+.kalan-sure-container {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    margin: 0 auto 30px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Kutunun içinde olduğu için burayı biraz daha sadeleştirdim */
+    background: rgba(0, 0, 0, 0.1); 
+    border-radius: 50%;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+}
+
+.progress-ring {
+    position: absolute;
+    top: 0; left: 0;
+    transform: rotate(-90deg);
+}
+.bg-ring { stroke: var(--glass-border); opacity: 0.3; }
+
+.progress-ring__circle {
+    transition: stroke-dashoffset 0.5s ease-in-out;
+    transform-origin: 50% 50%;
+    stroke: var(--ring-color);
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 6px var(--ring-color));
+}
+
+.kalan-sure-icerik {
+    text-align: center;
+    z-index: 2;
+}
+
+.kalan-sure-icerik h2 {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.kalan-sure-icerik #sonraki-vakit-isim {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+.kalan-sure-icerik p {
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* Vakit Kartları */
+.vakit-kartlari {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.vakit-kartlari .kart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.03); /* Kartlar kutu içinde çok hafif dursun */
+    border-radius: 18px;
+    border: 1px solid transparent; /* Varsayılan kenarlık yok */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.vakit-isim-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.vakit-ikon {
+    width: 26px;
+    height: 26px;
+    fill: var(--text-secondary);
+    transition: fill 0.3s ease;
+}
+
+.vakit-kartlari .kart h2 {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.vakit-kartlari .kart p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Aktif Vakit */
+.vakit-kartlari .kart.aktif-vakit {
+    background: var(--card-hover);
+    border: 1px solid var(--accent-color);
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.vakit-kartlari .kart.aktif-vakit .vakit-ikon { fill: var(--accent-color); }
+
+.vakit-kartlari .kart.aktif-vakit h2,
+.vakit-kartlari .kart.aktif-vakit p {
+    color: var(--accent-color);
+    font-weight: 700;
+}
